@@ -10,7 +10,7 @@ public class User {
     @Column(name = "user_id")
     private Long user_id;
     @OneToMany(mappedBy = "user")
-    private ArrayList<Restaurant> restaurants = new ArrayList<>();
+    private List<Restaurant> restaurants = new ArrayList<>();
     private String email;
     private String password;
     @Column(name = "nick_name")

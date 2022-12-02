@@ -16,5 +16,6 @@ public class MemberController {
 
     private final MemberRepository memberRepository;
 
+
     }
 

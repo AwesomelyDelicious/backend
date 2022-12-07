@@ -1,10 +1,14 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.*;
 
 @Entity
+@Getter @Setter
 public class Restaurant {
     @Id @GeneratedValue
     @Column(name = "restaurant_id")

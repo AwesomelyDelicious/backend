@@ -4,9 +4,7 @@ import com.sungkyul.decemberproject.Awesomely_Delicious.domain.Restaurant;
 import com.sungkyul.decemberproject.Awesomely_Delicious.repository.UserRepository;
 import com.sungkyul.decemberproject.Awesomely_Delicious.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,4 +17,8 @@ public class RestaurantApiController {
     }
 
 
+    @DeleteMapping("/api/v1/restaurant")
+    public void deleteRestaurantV1(@RequestParam(value = "restaurant_id") Long restaurantId){
+        restaurantService.deleteRestaurant(restaurantId);
+    }
 }

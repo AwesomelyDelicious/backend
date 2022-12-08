@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import java.time.LocalDateTime;
+
 import static javax.persistence.FetchType.*;
 
 @Entity
@@ -22,5 +24,6 @@ public class Restaurant {
     private float y;
     private float starCount;
     private String memo;
+    private LocalDateTime isDeleted;
 
 }

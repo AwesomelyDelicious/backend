@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -26,8 +28,12 @@ public class RestaurantService {
         restaurant.setY(form.getY());
         restaurant.setStarCount(form.getStar_count());
         restaurant.setUser(user);
-
         restaurantRepository.save(restaurant);
+    }
+
+    public void deleteRestaurant(Long restaurantId){
+        Restaurant restaurant = restaurantRepository.findById(restaurantId);
+        restaurant.setIsDeleted(LocalDateTime.now());
     }
 
 

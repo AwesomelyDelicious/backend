@@ -24,5 +24,7 @@ public class RestaurantRepository {
    public void save(Restaurant restaurant){
       em.persist(restaurant);
    }
-
+   public Restaurant findById(Long restaurantId) {
+      return em.find(Restaurant.class,restaurantId);
+   }
 }

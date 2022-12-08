@@ -1,6 +1,7 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.service;
 
 import com.sungkyul.decemberproject.Awesomely_Delicious.api.RestaurantForm;
+import com.sungkyul.decemberproject.Awesomely_Delicious.api.UpdateRestaurantForm;
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.Restaurant;
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
 import com.sungkyul.decemberproject.Awesomely_Delicious.repository.MemberRepository;
@@ -36,5 +37,10 @@ public class RestaurantService {
         restaurant.setIsDeleted(LocalDateTime.now());
     }
 
+    public void updateRestaurant(UpdateRestaurantForm form, Long restaurantId){
+        Restaurant restaurant = restaurantRepository.findById(restaurantId);
+        restaurant.setStarCount(form.getStar_count());
+        restaurant.setMemo(form.getMemo());
+    }
 
 }

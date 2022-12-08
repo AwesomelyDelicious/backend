@@ -21,4 +21,11 @@ public class RestaurantApiController {
     public void deleteRestaurantV1(@RequestParam(value = "restaurant_id") Long restaurantId){
         restaurantService.deleteRestaurant(restaurantId);
     }
+
+    @PatchMapping("/api/v1/restaurant")
+    public void updateRestaurantV2(@RequestBody UpdateRestaurantForm form,
+                                       @RequestParam(value = "restaurant_id") Long restaurantId){
+        restaurantService.updateRestaurant(form,restaurantId);
+    }
+
 }

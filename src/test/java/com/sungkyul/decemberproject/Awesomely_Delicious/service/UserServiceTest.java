@@ -9,22 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
-import java.lang.reflect.Member;
-
-import static org.assertj.core.api.Assertions.*;
-
 
 @SpringBootTest
 @Transactional
 @Rollback(false)
 class UserServiceTest {
-    @Autowired
-    private MemberRepository memberRepository;
-
-    @Autowired
-    private EntityManager em;
     @Autowired
     private UserService userService;
 

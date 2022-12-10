@@ -16,7 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Import(RestDocsConfiguration.class)
 @ExtendWith(RestDocumentationExtension.class)
-public abstract class AbstractRestDocsTests {
+public class AbstractRestDocsTests {
     @Autowired
     MockMvc mvc;
     @Autowired
@@ -35,6 +35,4 @@ public abstract class AbstractRestDocsTests {
                 .alwaysDo(restDocs)
                 .build();
     }
-
-
 }

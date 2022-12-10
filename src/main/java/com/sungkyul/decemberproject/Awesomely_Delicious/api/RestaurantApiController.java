@@ -23,7 +23,7 @@ public class RestaurantApiController {
     }
 
     @PatchMapping("/api/v1/restaurant")
-    public void updateRestaurantV2(@RequestBody UpdateRestaurantForm form,
+    public void updateRestaurantV1(@RequestBody UpdateRestaurantForm form,
                                        @RequestParam(value = "restaurant_id") Long restaurantId){
         restaurantService.updateRestaurant(form,restaurantId);
     }

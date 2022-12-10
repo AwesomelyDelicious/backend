@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = RestaurantApiController.class)
 class RestaurantApiControllerTest extends AbstractRestDocsTests {
+
     @MockBean
     protected  RestaurantService restaurantService;
     @MockBean
@@ -42,12 +43,12 @@ class RestaurantApiControllerTest extends AbstractRestDocsTests {
                 .andExpect(status().isOk())
                 .andDo(restDocs.document(
                         requestFields(
-                                fieldWithPath("restaurant_name").type(JsonFieldType.STRING).description("육꼬"),
-                                fieldWithPath("user_id").type(JsonFieldType.NUMBER).description("1"),
-                                fieldWithPath("x").type(JsonFieldType.NUMBER).description("123.23"),
-                                fieldWithPath("y").type(JsonFieldType.NUMBER).description("33.68"),
-                                fieldWithPath("star_count").type(JsonFieldType.NUMBER).description("4.5"),
-                                fieldWithPath("memo").type(JsonFieldType.STRING).description("맛있어요.")
+                                fieldWithPath("restaurant_name").type(JsonFieldType.STRING).description("맛집 이름"),
+                                fieldWithPath("user_id").type(JsonFieldType.NUMBER).description("유저 아이디"),
+                                fieldWithPath("x").type(JsonFieldType.NUMBER).description("맛집 x좌표"),
+                                fieldWithPath("y").type(JsonFieldType.NUMBER).description("맛집 y좌표"),
+                                fieldWithPath("star_count").type(JsonFieldType.NUMBER).description("별점"),
+                                fieldWithPath("memo").type(JsonFieldType.STRING).description("메모 내용")
                         )
                        )
                 );
@@ -64,7 +65,6 @@ class RestaurantApiControllerTest extends AbstractRestDocsTests {
         restaurant.setRestaurant_id(1L);
         restaurantRepository.save(restaurant);
 
-        Long id = 1L;
         mvc.perform(
                         RestDocumentationRequestBuilders.delete("/api/v1/restaurant/")
                                 .param("restaurant_id","1")
@@ -72,28 +72,41 @@ class RestaurantApiControllerTest extends AbstractRestDocsTests {
                 .andExpect(status().isOk())
                 .andDo(
                         restDocs.document(
-//                                pathParameters(
-//                                        parameterWithName("restaurant_id").description("맛집아이디")
-//                                )
-                              requestParameters(parameterWithName("restaurant_id").description("1"))
+                              requestParameters(parameterWithName("restaurant_id").description("맛집 아이디"))
                         )
                 );
     }
 
     @Test
-    void updateRestaurantV2() throws Exception{
+    void updateRestaurantV1() throws Exception{
+        Restaurant restaurant = new Restaurant();
+        restaurant.setRestaurantName("육꼬");
+        restaurant.setMemo("음식이 맛있어요");
+        restaurant.setX(1251.31f);
+        restaurant.setY(15123.24f);
+        restaurant.setStarCount(4.5f);
+        restaurant.setRestaurant_id(1L);
+        restaurantRepository.save(restaurant);
+
+        UpdateRestaurantForm form = new UpdateRestaurantForm();
+        form.setMemo("양이 많아요");
+        form.setStar_count(4.0f);
+
         mvc.perform(
-                patch("/api/v1/restaurant")
-        )
+                        RestDocumentationRequestBuilders.patch("/api/v1/restaurant/")
+                                .param("restaurant_id","1")
+                                .content(objectMapper.writeValueAsString(form))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON)
+                )
                 .andExpect(status().isOk())
                 .andDo(
                         restDocs.document(
-                                requestParameters(parameterWithName("restaurant_id").description("1")),
-                                responseFields(
-                                        fieldWithPath("star_count").type(JsonFieldType.NUMBER).description("4.8"),
-                                        fieldWithPath("memo").type(JsonFieldType.STRING).description("너무 맛있어요.")
-                                        )
-
+                                requestParameters(parameterWithName("restaurant_id").description("맛집 아이디")),
+                                requestFields(
+                                        fieldWithPath("star_count").type(JsonFieldType.NUMBER).description("수정할 별점"),
+                                        fieldWithPath("memo").type(JsonFieldType.STRING).description("수정할 메모 내용")
+                                )
                         )
                 );
     }

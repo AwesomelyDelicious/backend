@@ -1,0 +1,10 @@
+== 맛집
+
+=== 맛집 리스트 추가
+operation::restaurant-api-controller-test/add-restaurant-v1[]
+
+=== 맛집 리스트 삭제
+operation::restaurant-api-controller-test/delete-restaurant-v1[]
+
+=== 맛집 리스트 수정
+operation::restaurant-api-controller-test/update-restaurant-v1[]

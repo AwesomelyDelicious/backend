@@ -10,12 +10,31 @@ import org.springframework.web.bind.annotation.*;
 
 @Transactional
 @RestController
+@RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 public class UserApiController {
     private final UserService userService;
+    private final MemberRepository memberRepository;
 
-    @PostMapping("/api/v1/user/new")
+    /**
+     * A-3) [POST] /api/v1/user/new (회원가입)
+     * @param form(email, nickname, password, password_re)
+     * @return user_Id
+     */
+    @PostMapping("/new")
     public Long login(@RequestBody UserForm form) {
         return userService.join(form);
+    }
+
+
+    /**
+     * A-2) [GET] /api/v1/user/{userId} (userId로 회원정보 조회)
+     * @param userId
+     * @return User
+     */
+    @GetMapping("/{userId}")
+    public User getUserInfoByUserId(@PathVariable Long userId) {
+        User user = memberRepository.findById(userId);
+        return user;
     }
 }

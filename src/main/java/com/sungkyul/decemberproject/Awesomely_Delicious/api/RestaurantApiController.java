@@ -1,7 +1,6 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.api;
 
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.Restaurant;
-import com.sungkyul.decemberproject.Awesomely_Delicious.repository.UserRepository;
 import com.sungkyul.decemberproject.Awesomely_Delicious.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

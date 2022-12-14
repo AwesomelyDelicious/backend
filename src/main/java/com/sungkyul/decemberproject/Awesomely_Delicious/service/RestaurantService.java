@@ -33,8 +33,7 @@ public class RestaurantService {
     }
 
     public void deleteRestaurant(Long restaurantId){
-        Restaurant restaurant = restaurantRepository.findById(restaurantId);
-        restaurant.setIsDeleted(LocalDateTime.now());
+        restaurantRepository.deleteById(restaurantId);
     }
 
     public void updateRestaurant(UpdateRestaurantForm form, Long restaurantId){

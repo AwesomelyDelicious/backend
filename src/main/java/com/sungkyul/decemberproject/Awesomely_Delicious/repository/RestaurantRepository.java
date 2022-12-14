@@ -27,4 +27,8 @@ public class RestaurantRepository {
    public Restaurant findById(Long restaurantId) {
       return em.find(Restaurant.class,restaurantId);
    }
+   public void deleteById(Long restaurantId){
+      em.remove(em.find(Restaurant.class,restaurantId));
+   }
+
 }

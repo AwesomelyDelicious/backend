@@ -1,5 +1,6 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ public class Restaurant {
     private Long restaurant_id;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     private String restaurantName;

@@ -1,5 +1,6 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.repository;
 
+import com.sungkyul.decemberproject.Awesomely_Delicious.api.UserIdDto;
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -42,11 +43,13 @@ public class MemberRepository  {
      * 로그인
      * @return User_id 반환
      */
-    public Long findByUserInfo(String email, String password) {
+    public UserIdDto findByUserInfo(String email, String password) {
         TypedQuery<User> query = em.createQuery("select m from User m where m.email = : email AND m.password = : password", User.class);
         query.setParameter("email", email);
         query.setParameter("password", password);
         User result = query.getSingleResult();
-        return result.getUser_id();
+        UserIdDto dto = new UserIdDto();
+        dto.setUserId(result.getUser_id());
+        return dto;
     }
 }

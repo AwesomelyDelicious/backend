@@ -8,15 +8,17 @@ import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
 import com.sungkyul.decemberproject.Awesomely_Delicious.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.EntityManager;
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final MemberRepository memberRepository;
-    UserIdDto dto = new UserIdDto();
     private final EntityManager em;
 
     public UserIdDto join(UserForm form){
@@ -26,6 +28,7 @@ public class UserService {
         List<User> result = em.createQuery("select m from User m where m.email = : email", User.class)
                 .setParameter("email", form.getEmail())
                 .getResultList();
+
         if (!result.isEmpty()) throw new ApiException(ExceptionEnum.Duplicated_Email);
 
         User user = new User();
@@ -33,6 +36,7 @@ public class UserService {
         user.setPassword(form.getPassword());
         user.setNickname(form.getNickname());
         memberRepository.save(user);
+        UserIdDto dto = new UserIdDto();
         dto.setUserId(user.getUser_id());
         return dto;
     }

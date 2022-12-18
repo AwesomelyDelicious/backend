@@ -2,26 +2,21 @@ package com.sungkyul.decemberproject.Awesomely_Delicious.repository;
 
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.FluentQuery;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 
 @Repository
+@Log4j2
+@RestController
 @RequiredArgsConstructor
 public class MemberRepository  {
+
     private final EntityManager em;
     public void save(User user) {
         em.persist(user);
@@ -44,7 +39,7 @@ public class MemberRepository  {
     }
 
     /**
-     * 이메일, 비밀번호로 유저 조회
+     * 로그인
      * @return User_id 반환
      */
     public Long findByUserInfo(String email, String password) {

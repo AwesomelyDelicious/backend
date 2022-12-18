@@ -41,6 +41,7 @@ public class UserApiController {
     }
 
     /**
+     * 로그인
      * A-1) [Post] /api/v1/authentication
      * @param email, password
      * @return userId

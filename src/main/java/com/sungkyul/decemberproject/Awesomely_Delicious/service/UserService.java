@@ -1,5 +1,6 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.service;
 
+import com.sungkyul.decemberproject.Awesomely_Delicious.api.UserIdDto;
 import com.sungkyul.decemberproject.Awesomely_Delicious.exceptioncontroller.ExceptionEnum;
 import com.sungkyul.decemberproject.Awesomely_Delicious.exceptioncontroller.ApiException;
 import com.sungkyul.decemberproject.Awesomely_Delicious.api.UserForm;
@@ -15,19 +16,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final MemberRepository memberRepository;
+    UserIdDto dto = new UserIdDto();
     private final EntityManager em;
 
-    public Long join(UserForm form){
+    public UserIdDto join(UserForm form){
 
-        User user = new User();
+        if (!form.getPassword().equals(form.getPassword_re())) throw new ApiException(ExceptionEnum.Incorrected_Password);
+
         List<User> result = em.createQuery("select m from User m where m.email = : email", User.class)
                 .setParameter("email", form.getEmail())
                 .getResultList();
         if (!result.isEmpty()) throw new ApiException(ExceptionEnum.Duplicated_Email);
+
+        User user = new User();
         user.setEmail(form.getEmail());
         user.setPassword(form.getPassword());
         user.setNickname(form.getNickname());
         memberRepository.save(user);
-        return user.getUser_id();
+        dto.setUserId(user.getUser_id());
+        return dto;
     }
 }

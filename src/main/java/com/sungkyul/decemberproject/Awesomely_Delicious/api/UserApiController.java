@@ -24,7 +24,7 @@ public class UserApiController {
      * @return user_Id
      */
     @PostMapping("/user/new")
-    public Long join(@RequestBody UserForm form) {
+    public UserIdDto join(@RequestBody UserForm form) {
         return userService.join(form);
     }
 

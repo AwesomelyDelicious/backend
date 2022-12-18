@@ -15,6 +15,8 @@ public enum ExceptionEnum {
     Incorrected_Password(HttpStatus.BAD_REQUEST, "400", "비밀번호가 일치하지 않습니다."),
     NonExistent_Restaurant(HttpStatus.NOT_FOUND, "404", "맛집 리스트가 존재하지 않습니다"),
     NonExistent_User(HttpStatus.NOT_FOUND, "404", "사용자가 존재하지 않습니다."),
+    Memo_OutOfRange(HttpStatus.NOT_FOUND, "404", "작성할 수 있는 글자 수를 초과했습니다."),
+    StarCount_OutOfRange(HttpStatus.NOT_FOUND, "404", "설정할 수 있는 별점의 범위를 이탈했습니다."),
     RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001"),
     ACCESS_DENIED_EXCEPTION(HttpStatus.UNAUTHORIZED, "E0002"),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "E0003"),

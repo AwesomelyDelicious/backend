@@ -26,6 +26,5 @@ public class Restaurant {
     private float y;
     private float starCount;
     private String memo;
-    private LocalDateTime isDeleted;
 
 }

@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -36,12 +35,13 @@ public class RestaurantService {
 
     public void deleteRestaurant(Long restaurantId){
         Restaurant restaurant = restaurantRepository.findById(restaurantId);
-        if (restaurant== null) throw new ApiException(ExceptionEnum.NonExistent_User);
+        if (restaurant== null) throw new ApiException(ExceptionEnum.NonExistent_Restaurant);
         restaurantRepository.deleteById(restaurantId);
     }
 
     public void updateRestaurant(UpdateRestaurantForm form, Long restaurantId){
         Restaurant restaurant = restaurantRepository.findById(restaurantId);
+        if (restaurant== null) throw new ApiException(ExceptionEnum.NonExistent_Restaurant);
         restaurant.setStarCount(form.getStar_count());
         restaurant.setMemo(form.getMemo());
     }

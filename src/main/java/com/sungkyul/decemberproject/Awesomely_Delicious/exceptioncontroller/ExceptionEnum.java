@@ -13,6 +13,7 @@ public enum ExceptionEnum {
 
     Duplicated_Email(HttpStatus.BAD_REQUEST, "400", "이미 존재하는 Email입니다."),
     Incorrected_Password(HttpStatus.BAD_REQUEST, "400", "비밀번호가 일치하지 않습니다."),
+    NonExistent_Restaurant(HttpStatus.NOT_FOUND, "404", "맛집 리스트가 존재하지 않습니다"),
     NonExistent_User(HttpStatus.NOT_FOUND, "404", "사용자가 존재하지 않습니다."),
     RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001"),
     ACCESS_DENIED_EXCEPTION(HttpStatus.UNAUTHORIZED, "E0002"),

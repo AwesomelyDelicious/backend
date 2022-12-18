@@ -4,6 +4,8 @@ import com.sungkyul.decemberproject.Awesomely_Delicious.api.RestaurantForm;
 import com.sungkyul.decemberproject.Awesomely_Delicious.api.UpdateRestaurantForm;
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.Restaurant;
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
+import com.sungkyul.decemberproject.Awesomely_Delicious.exceptioncontroller.ApiException;
+import com.sungkyul.decemberproject.Awesomely_Delicious.exceptioncontroller.ExceptionEnum;
 import com.sungkyul.decemberproject.Awesomely_Delicious.repository.MemberRepository;
 import com.sungkyul.decemberproject.Awesomely_Delicious.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,7 @@ public class RestaurantService {
 
     public void addRestaurant(RestaurantForm form){
         User user = memberRepository.findById(form.getUser_id());
-
+        if (user== null) throw new ApiException(ExceptionEnum.NonExistent_User);
         Restaurant restaurant = new Restaurant();
         restaurant.setRestaurantName(form.getRestaurant_name());
         restaurant.setMemo(form.getMemo());
@@ -33,6 +35,8 @@ public class RestaurantService {
     }
 
     public void deleteRestaurant(Long restaurantId){
+        Restaurant restaurant = restaurantRepository.findById(restaurantId);
+        if (restaurant== null) throw new ApiException(ExceptionEnum.NonExistent_User);
         restaurantRepository.deleteById(restaurantId);
     }
 

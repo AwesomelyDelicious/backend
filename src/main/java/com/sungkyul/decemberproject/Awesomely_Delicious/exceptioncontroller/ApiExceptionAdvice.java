@@ -45,14 +45,14 @@ public class ApiExceptionAdvice {
     }
 
 
-    @ExceptionHandler({Exception.class})
-    public ResponseEntity<ApiExceptionEntity> exceptionHandler(HttpServletRequest request, final Exception e) {
-        e.printStackTrace();
-        return ResponseEntity
-                .status(ExceptionEnum.INTERNAL_SERVER_ERROR.getStatus())
-                .body(ApiExceptionEntity.builder()
-                        .errorCode(ExceptionEnum.INTERNAL_SERVER_ERROR.getCode())
-                        .errorMessage(e.getMessage())
-                        .build());
-    }
+//    @ExceptionHandler({Exception.class})
+//    public ResponseEntity<ApiExceptionEntity> exceptionHandler(HttpServletRequest request, final Exception e) {
+//        e.printStackTrace();
+//        return ResponseEntity
+//                .status(ExceptionEnum.INTERNAL_SERVER_ERROR.getStatus())
+//                .body(ApiExceptionEntity.builder()
+//                        .errorCode(ExceptionEnum.INTERNAL_SERVER_ERROR.getCode())
+//                        .errorMessage(e.getMessage())
+//                        .build());
+//    }
 }

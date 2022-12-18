@@ -4,10 +4,16 @@ import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
 import com.sungkyul.decemberproject.Awesomely_Delicious.repository.MemberRepository;
 import com.sungkyul.decemberproject.Awesomely_Delicious.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Transactional
@@ -24,9 +30,10 @@ public class UserApiController {
      * @return user_Id
      */
     @PostMapping("/user/new")
-    public Long join(@RequestBody UserForm form) {
+    public UserIdDto join(@Valid @RequestBody UserForm form) {
         return userService.join(form);
     }
+
 
 
     /**
@@ -47,7 +54,7 @@ public class UserApiController {
      * @return userId
      */
     @PostMapping("/authentication")
-    public Long getUserId(@RequestParam String email, @RequestParam String password) {
+    public UserIdDto getUserId(@RequestParam String email, @RequestParam String password) {
         return memberRepository.findByUserInfo(email, password);
     }
 }

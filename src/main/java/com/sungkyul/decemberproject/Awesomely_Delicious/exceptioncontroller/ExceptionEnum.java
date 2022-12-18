@@ -19,7 +19,7 @@ public enum ExceptionEnum {
     StarCount_OutOfRange(HttpStatus.NOT_FOUND, "404", "설정할 수 있는 별점의 범위를 이탈했습니다."),
     RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001"),
     ACCESS_DENIED_EXCEPTION(HttpStatus.UNAUTHORIZED, "E0002"),
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "E0003"),
+//    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "E0003"),
     SECURITY_01(HttpStatus.UNAUTHORIZED, "S0001", "권한이 없습니다.");
 
 

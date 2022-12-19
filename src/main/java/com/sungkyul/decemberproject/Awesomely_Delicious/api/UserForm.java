@@ -12,7 +12,7 @@ import javax.validation.constraints.Pattern;
 public class UserForm {
 
     @NotNull
-    @Email
+    @Email(message = "올바른 이메일 형식이 아닙니다.")
     private String email;
 
     private String password;

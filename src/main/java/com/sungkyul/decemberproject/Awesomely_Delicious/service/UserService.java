@@ -37,7 +37,7 @@ public class UserService {
         user.setNickname(form.getNickname());
         memberRepository.save(user);
         UserIdDto dto = new UserIdDto();
-        dto.setUserId(user.getUser_id());
+        dto.setId(user.getUser_id());
         return dto;
     }
 }

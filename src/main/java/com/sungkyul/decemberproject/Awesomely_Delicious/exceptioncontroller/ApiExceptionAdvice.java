@@ -54,16 +54,16 @@ public class ApiExceptionAdvice {
         return new ResponseEntity<ApiExceptionEntity>(exception, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({AccessDeniedException.class})
-    public ResponseEntity<ApiExceptionEntity> exceptionHandler(HttpServletRequest request, final AccessDeniedException e) {
-        e.printStackTrace();
-        return ResponseEntity
-                .status(ExceptionEnum.ACCESS_DENIED_EXCEPTION.getStatus())
-                .body(ApiExceptionEntity.builder()
-                        .errorCode(ExceptionEnum.ACCESS_DENIED_EXCEPTION.getCode())
-                        .errorMessage(e.getMessage())
-                        .build());
-    }
+//    @ExceptionHandler({AccessDeniedException.class})
+//    public ResponseEntity<ApiExceptionEntity> exceptionHandler(HttpServletRequest request, final AccessDeniedException e) {
+//        e.printStackTrace();
+//        return ResponseEntity
+//                .status(ExceptionEnum.ACCESS_DENIED_EXCEPTION.getStatus())
+//                .body(ApiExceptionEntity.builder()
+//                        .errorCode(ExceptionEnum.ACCESS_DENIED_EXCEPTION.getCode())
+//                        .errorMessage(e.getMessage())
+//                        .build());
+//    }
 
 
 //    @ExceptionHandler({RuntimeException.class})

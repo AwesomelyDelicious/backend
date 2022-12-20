@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import java.util.HashMap;
 import java.util.List;
@@ -53,15 +54,18 @@ public class MemberRepository  {
         UserIdDto dto = new UserIdDto();
 
         try {
-            user = em.createQuery("select m from User m where m.email = : email "
-                            + "AND m.password = : password", User.class)
+            user = em.createQuery("SELECT m from User m where m.email = : email", User.class)
                     .setParameter("email", email)
-                    .setParameter("password", password)
                     .getSingleResult();
-        } catch (NoResultException e) {throw new ApiException(ExceptionEnum.NonExistent_User);}
+        } catch (NoResultException e) { //결과값이 없을 때 -> 유저 정보 없음
+            throw new ApiException(ExceptionEnum.NonExistent_User);
+        } catch (NonUniqueResultException e) { //결과값이 두 개 이상일 때 -> email 중복(Double Check)
+            throw new ApiException(ExceptionEnum.Duplicated_Email);
+        }
+        //DB에 존재하는 password랑 파라미터로 입력된 password 비교, 일치하지 않으면 에러
+        if (!user.getPassword().equals(password)) throw new ApiException(ExceptionEnum.Incorrected_Password);
+        else dto.setId(user.getUser_id());
 
-
-        dto.setId(user.getUser_id());
         return dto;
     }
 }

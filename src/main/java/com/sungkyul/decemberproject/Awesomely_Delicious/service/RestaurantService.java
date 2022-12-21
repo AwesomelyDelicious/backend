@@ -25,9 +25,11 @@ public class RestaurantService {
         if (user== null) throw new ApiException(ExceptionEnum.NonExistent_User);
         Restaurant restaurant = new Restaurant();
         restaurant.setRestaurantName(form.getRestaurant_name());
+//        if(form.getMemo().length() > 255) throw new ApiException(ExceptionEnum.OutOfRange_Memo);
         restaurant.setMemo(form.getMemo());
         restaurant.setX(form.getX());
         restaurant.setY(form.getY());
+//        if(form.getStar_count() >5 || form.getStar_count() <= 0) throw new ApiException(ExceptionEnum.OutOfRange_StarCount);
         restaurant.setStarCount(form.getStar_count());
         restaurant.setUser(user);
         restaurantRepository.save(restaurant);
@@ -42,8 +44,10 @@ public class RestaurantService {
     public void updateRestaurant(UpdateRestaurantForm form, Long restaurantId){
         Restaurant restaurant = restaurantRepository.findById(restaurantId);
         if (restaurant== null) throw new ApiException(ExceptionEnum.NonExistent_Restaurant);
-        restaurant.setStarCount(form.getStar_count());
+//        if(form.getMemo().length() > 255) throw new ApiException(ExceptionEnum.OutOfRange_Memo);
         restaurant.setMemo(form.getMemo());
+//        if(form.getStar_count() >5 || form.getStar_count() <= 0) throw new ApiException(ExceptionEnum.OutOfRange_StarCount);
+        restaurant.setStarCount(form.getStar_count());
     }
 
 }

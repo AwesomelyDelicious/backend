@@ -114,8 +114,19 @@ public class ApiExceptionAdvice {
                     break;
                 case "NotEmpty":
                     code = ExceptionEnum.Empty_Value.getCode();
+                    message = ExceptionEnum.Empty_Value.getMessage();
                     status = ExceptionEnum.Empty_Value.getStatus();
                     break;
+                case "Max": case "Min" :
+                    code = ExceptionEnum.OutOfRange_StarCount.getCode();
+                    status = ExceptionEnum.OutOfRange_StarCount.getStatus();
+                    message = ExceptionEnum.OutOfRange_StarCount.getMessage() + message;
+                    break;
+                case "Size" :
+                    code = ExceptionEnum.OutOfRange_Memo.getCode();
+                    status = ExceptionEnum.OutOfRange_Memo.getStatus();
+                    break;
+
             }
         }
         return new ApiExceptionEntity(status, code, message);

@@ -21,11 +21,12 @@ public enum ExceptionEnum {
     Empty_Value(HttpStatus.NOT_FOUND, "404", "빈 문자열은 사용 할 수 없습니다."),
 
     RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001"),
+    NonExistent_User(HttpStatus.NOT_FOUND, "404", "사용자가 존재하지 않습니다.");
 
 //    RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001"),
-    ACCESS_DENIED_EXCEPTION(HttpStatus.UNAUTHORIZED, "E0002"),
 //    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "E0003"),
-    SECURITY_01(HttpStatus.UNAUTHORIZED, "S0001", "권한이 없습니다.");
+//    SECURITY_01(HttpStatus.UNAUTHORIZED, "S0001", "권한이 없습니다."),
+//    ACCESS_DENIED_EXCEPTION(HttpStatus.UNAUTHORIZED, "E0002");
 
 
     private final HttpStatus status;

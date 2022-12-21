@@ -20,8 +20,7 @@ public enum ExceptionEnum {
     OutOfRange_StarCount(HttpStatus.NOT_FOUND, "404", "설정할 수 있는 별점의 범위를 이탈했습니다. 별점은 "),
     Empty_Value(HttpStatus.NOT_FOUND, "404", "빈 문자열은 사용 할 수 없습니다."),
 
-    RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001"),
-    NonExistent_User(HttpStatus.NOT_FOUND, "404", "사용자가 존재하지 않습니다.");
+    RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001");
 
 //    RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001"),
 //    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "E0003"),

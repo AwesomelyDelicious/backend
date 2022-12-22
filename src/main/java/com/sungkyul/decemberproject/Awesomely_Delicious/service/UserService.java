@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class UserService {
     private final EntityManager em;
 
     public UserIdDto join(UserForm form){
-
+        if (!Pattern.matches("^[a-zA-Z0-9]*$", form.getPassword())) throw new ApiException(ExceptionEnum.Incorrected_Password_Format);
         if (!form.getPassword().equals(form.getPassword_re())) throw new ApiException(ExceptionEnum.Incorrected_Password);
 
         List<User> result = em.createQuery("select m from User m where m.email = : email", User.class)

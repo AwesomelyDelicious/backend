@@ -18,7 +18,7 @@ jobs:
         with:
           java-version: 11
 
-      - name: make application-aws.properties
+      - name: make application-dbconfig.properties
         run: |
           cd ./src/main/resources
           touch ./application-dbconfig.properties
@@ -34,7 +34,7 @@ jobs:
         shell: bash
 
       - name: Make Zip File
-        run: zip -qq -r ./build.zip .
+        run: zip -qq -r ./build.zip ./build/libs/Awesomely_Delicious-0.0.1-SNAPSHOT.jar
         shell: bash
 
         #aws 접근 id, key

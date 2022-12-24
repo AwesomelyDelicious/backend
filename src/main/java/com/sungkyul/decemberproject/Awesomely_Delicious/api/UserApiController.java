@@ -1,17 +1,10 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.api;
 
-import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
-import com.sungkyul.decemberproject.Awesomely_Delicious.repository.MemberRepository;
+import com.sungkyul.decemberproject.Awesomely_Delicious.repository.UserrRepository;
 import com.sungkyul.decemberproject.Awesomely_Delicious.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -22,7 +15,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserApiController {
     private final UserService userService;
-    private final MemberRepository memberRepository;
+    private final UserrRepository userrRepository;
 
     /**
      * A-3) [POST] /api/v1/user/new (회원가입)
@@ -43,7 +36,7 @@ public class UserApiController {
      */
     @GetMapping("/user/{userId}")
     public Map<String, Object> getUserInfoByUserId(@PathVariable Long userId) {
-        Map<String, Object> result = memberRepository.findUserInfoById(userId);
+        Map<String, Object> result = userrRepository.findUserInfoById(userId);
         return result;
     }
 
@@ -55,6 +48,6 @@ public class UserApiController {
      */
     @PostMapping("/authentication")
     public UserIdDto login(@RequestParam String email, @RequestParam String password) {
-        return memberRepository.findByUserInfo(email, password);
+        return userService.findByUserInfo(email, password);
     }
 }

@@ -1,6 +1,7 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,4 +22,5 @@ public class User {
     private String password;
     @Column(name = "nick_name")
     private String nickname;
+
 }

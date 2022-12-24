@@ -18,13 +18,10 @@ jobs:
         with:
           java-version: 11
 
-      ## gitignore한 파일 생성해주기
-      ## create application.properties
-      - name: make application-aws.properties
+      - name: make application-dbconfig.properties
         run: |
           cd ./src/main/resources
           touch ./application-dbconfig.properties
-          # GitHub-Actions에서 설정한 값을 application-dev.properties 파일에 쓰기
           echo "${{ secrets.APPLICATION_DBCONFIG_PROPERTIES }}" > ./application-dbconfig.properties
         shell: bash
 
@@ -38,9 +35,9 @@ jobs:
         run: ./gradlew build
         shell: bash
         
-        #프로젝트 zip파일로 압축
+        #jar파일 zip파일로 압축
       - name: Make Zip File
-        run: zip -qq -r ./build.zip .
+        run: zip -qq -r ./build.zip ./build/libs/Awesomely_Delicious-0.0.1-SNAPSHOT.jar
         shell: bash
 
         #aws 접근 id, key

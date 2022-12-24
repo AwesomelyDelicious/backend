@@ -29,7 +29,6 @@ jobs:
         run: chmod +x ./gradlew
         shell: bash
 
-        #빌드 시작
       - name: Build with Gradle
         run: ./gradlew build
         shell: bash

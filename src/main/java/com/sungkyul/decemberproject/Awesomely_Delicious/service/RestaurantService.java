@@ -6,7 +6,7 @@ import com.sungkyul.decemberproject.Awesomely_Delicious.domain.Restaurant;
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
 import com.sungkyul.decemberproject.Awesomely_Delicious.exceptioncontroller.ApiException;
 import com.sungkyul.decemberproject.Awesomely_Delicious.exceptioncontroller.ExceptionEnum;
-import com.sungkyul.decemberproject.Awesomely_Delicious.repository.MemberRepository;
+import com.sungkyul.decemberproject.Awesomely_Delicious.repository.UserrRepository;
 import com.sungkyul.decemberproject.Awesomely_Delicious.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class RestaurantService {
-    private final MemberRepository memberRepository;
+    private final UserrRepository userrRepository;
     private final RestaurantRepository restaurantRepository;
 
     public void addRestaurant(RestaurantForm form){
-        User user = memberRepository.findById(form.getUser_id());
+        User user = userrRepository.findById(form.getUser_id());
         if (user== null) throw new ApiException(ExceptionEnum.NonExistent_User);
         Restaurant restaurant = new Restaurant();
         restaurant.setRestaurantName(form.getRestaurant_name());

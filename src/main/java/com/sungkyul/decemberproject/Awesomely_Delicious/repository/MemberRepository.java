@@ -1,22 +1,22 @@
 package com.sungkyul.decemberproject.Awesomely_Delicious.repository;
 
+import com.sungkyul.decemberproject.Awesomely_Delicious.api.RestaurantListForm;
 import com.sungkyul.decemberproject.Awesomely_Delicious.api.UserIdDto;
 import com.sungkyul.decemberproject.Awesomely_Delicious.domain.User;
 import com.sungkyul.decemberproject.Awesomely_Delicious.exceptioncontroller.ApiException;
 import com.sungkyul.decemberproject.Awesomely_Delicious.exceptioncontroller.ExceptionEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
-import javax.persistence.TypedQuery;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 @Log4j2
@@ -41,7 +41,9 @@ public class MemberRepository  {
         User user =  em.find(User.class,id);
         result.put("email", user.getEmail());
         result.put("nick_name", user.getNickname());
-        result.put("restaurant_list", user.getRestaurants());
+
+        List<RestaurantListForm> list = user.getRestaurants().stream().map(r-> new RestaurantListForm(r)).collect(Collectors.toList());
+        result.put("restaurant_list", list);
         return result;
     }
 

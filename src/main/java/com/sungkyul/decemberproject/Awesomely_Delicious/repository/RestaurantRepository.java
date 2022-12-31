@@ -24,10 +24,10 @@ public class RestaurantRepository {
    public void save(Restaurant restaurant){
       em.persist(restaurant);
    }
-   public Restaurant findById(Long restaurantId) {
+   public Restaurant findById(String restaurantId) {
       return em.find(Restaurant.class,restaurantId);
    }
-   public void deleteById(Long restaurantId){
+   public void deleteById(String restaurantId){
       em.remove(em.find(Restaurant.class,restaurantId));
    }
 

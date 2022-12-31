@@ -50,11 +50,10 @@ public class UserApiController {
     /**
      * 로그인
      * A-1) [Post] /api/v1/authentication
-     * @param email, password
      * @return userId
      */
     @PostMapping("/authentication")
-    public UserIdDto login(@RequestParam String email, @RequestParam String password) {
-        return memberRepository.findByUserInfo(email, password);
+    public UserIdDto login(@RequestBody UserForm userForm) {
+        return memberRepository.findByUserInfo(userForm.getEmail(),userForm.getPassword());
     }
 }

@@ -30,6 +30,7 @@ class RestaurantApiControllerTest extends AbstractRestDocsTests {
     void addRestaurantV1() throws Exception{
         RestaurantForm form = new RestaurantForm();
         form.setRestaurant_name("육꼬");
+        form.setRestaurant_id("fdsafdsa");
         form.setMemo("음식이 맛있어요");
         form.setX(1251.31f);
         form.setY(15123.24f);
@@ -48,7 +49,8 @@ class RestaurantApiControllerTest extends AbstractRestDocsTests {
                                 fieldWithPath("x").type(JsonFieldType.NUMBER).description("맛집 x좌표"),
                                 fieldWithPath("y").type(JsonFieldType.NUMBER).description("맛집 y좌표"),
                                 fieldWithPath("star_count").type(JsonFieldType.NUMBER).description("별점"),
-                                fieldWithPath("memo").type(JsonFieldType.STRING).description("메모 내용")
+                                fieldWithPath("memo").type(JsonFieldType.STRING).description("메모 내용"),
+                                fieldWithPath("restaurant_id").type(JsonFieldType.STRING).description("레스토랑 아이디")
                         )
                        )
                 );
@@ -62,7 +64,7 @@ class RestaurantApiControllerTest extends AbstractRestDocsTests {
         restaurant.setX(1251.31f);
         restaurant.setY(15123.24f);
         restaurant.setStarCount(4.5f);
-        restaurant.setRestaurant_id(1L);
+        restaurant.setRestaurant_id("fdsfds");
         restaurantRepository.save(restaurant);
 
         mvc.perform(
@@ -85,7 +87,7 @@ class RestaurantApiControllerTest extends AbstractRestDocsTests {
         restaurant.setX(1251.31f);
         restaurant.setY(15123.24f);
         restaurant.setStarCount(4.5f);
-        restaurant.setRestaurant_id(1L);
+        restaurant.setRestaurant_id("fdsfsd");
         restaurantRepository.save(restaurant);
 
         UpdateRestaurantForm form = new UpdateRestaurantForm();

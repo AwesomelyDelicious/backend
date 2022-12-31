@@ -19,13 +19,13 @@ public class RestaurantApiController {
 
 
     @DeleteMapping("/api/v1/restaurant")
-    public void deleteRestaurantV1(@RequestParam(value = "restaurant_id") Long restaurantId){
+    public void deleteRestaurantV1(@RequestParam(value = "restaurant_id") String restaurantId){
         restaurantService.deleteRestaurant(restaurantId);
     }
 
     @PatchMapping("/api/v1/restaurant")
     public void updateRestaurantV1(@Valid @RequestBody UpdateRestaurantForm form,
-                                       @RequestParam(value = "restaurant_id") Long restaurantId){
+                                       @RequestParam(value = "restaurant_id") String restaurantId){
         restaurantService.updateRestaurant(form,restaurantId);
     }
 

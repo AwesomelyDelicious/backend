@@ -13,9 +13,9 @@ import static javax.persistence.FetchType.*;
 @Entity
 @Getter @Setter
 public class Restaurant {
-    @Id @GeneratedValue
+    @Id
     @Column(name = "restaurant_id")
-    private Long restaurant_id;
+    private String restaurant_id;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore

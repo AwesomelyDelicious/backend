@@ -53,7 +53,7 @@ public class UserApiController {
      * @return userId
      */
     @PostMapping("/authentication")
-    public UserIdDto login(@RequestBody UserForm userForm) {
+    public UserIdDto login(@RequestBody UserForm userForm) { // RequestParam을 RequestBody로 수정
         return memberRepository.findByUserInfo(userForm.getEmail(),userForm.getPassword());
     }
 }

@@ -41,9 +41,9 @@ public class MemberRepository  {
         User user =  em.find(User.class,id);
         result.put("email", user.getEmail());
         result.put("nick_name", user.getNickname());
-
+        // user.getRestaurants()를 그대로 사용하게 되면 List<Restaurant> restaurants를 반환하게 된다
+        // 이는 Restaurant 도메인을 그대로 노출하게 되므로 restaurants를 stream().map()으로 순회하면서 하나씩 RestauranhtListForm으로 변환시켜 도메인 노출을 막는다
         List<RestaurantListForm> list = user.getRestaurants().stream().map(r-> new RestaurantListForm(r)).collect(Collectors.toList());
-
         result.put("restaurant_list", list);
         return result;
     }

@@ -43,6 +43,7 @@ public class MemberRepository  {
         result.put("nick_name", user.getNickname());
 
         List<RestaurantListForm> list = user.getRestaurants().stream().map(r-> new RestaurantListForm(r)).collect(Collectors.toList());
+
         result.put("restaurant_list", list);
         return result;
     }

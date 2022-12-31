@@ -20,6 +20,7 @@ public class RestaurantForm {
     @Max(5)
     @Min(1)
     private float star_count;
+    private String restaurant_id;
 }
 
 

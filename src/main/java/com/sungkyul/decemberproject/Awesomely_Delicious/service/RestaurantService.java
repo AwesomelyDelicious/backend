@@ -29,19 +29,20 @@ public class RestaurantService {
         restaurant.setMemo(form.getMemo());
         restaurant.setX(form.getX());
         restaurant.setY(form.getY());
+        restaurant.setRestaurant_id(form.getRestaurant_id());
 //        if(form.getStar_count() >5 || form.getStar_count() <= 0) throw new ApiException(ExceptionEnum.OutOfRange_StarCount);
         restaurant.setStarCount(form.getStar_count());
         restaurant.setUser(user);
         restaurantRepository.save(restaurant);
     }
 
-    public void deleteRestaurant(Long restaurantId){
+    public void deleteRestaurant(String restaurantId){
         Restaurant restaurant = restaurantRepository.findById(restaurantId);
         if (restaurant== null) throw new ApiException(ExceptionEnum.NonExistent_Restaurant);
         restaurantRepository.deleteById(restaurantId);
     }
 
-    public void updateRestaurant(UpdateRestaurantForm form, Long restaurantId){
+    public void updateRestaurant(UpdateRestaurantForm form, String restaurantId){
         Restaurant restaurant = restaurantRepository.findById(restaurantId);
         if (restaurant== null) throw new ApiException(ExceptionEnum.NonExistent_Restaurant);
 //        if(form.getMemo().length() > 255) throw new ApiException(ExceptionEnum.OutOfRange_Memo);

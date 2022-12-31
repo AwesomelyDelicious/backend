@@ -19,13 +19,13 @@ public class RestaurantApiController {
 
 
     @DeleteMapping("/api/v1/restaurant")
-    public void deleteRestaurantV1(@RequestParam(value = "restaurant_id") Long restaurantId){
+    public void deleteRestaurantV1(@RequestParam(value = "restaurant_id") String restaurantId){ //restaurant_id를 String으로 바꾸고 오류나지 않게 수정
         restaurantService.deleteRestaurant(restaurantId);
     }
 
     @PatchMapping("/api/v1/restaurant")
     public void updateRestaurantV1(@Valid @RequestBody UpdateRestaurantForm form,
-                                       @RequestParam(value = "restaurant_id") Long restaurantId){
+                                       @RequestParam(value = "restaurant_id") String restaurantId){
         restaurantService.updateRestaurant(form,restaurantId);
     }
 
